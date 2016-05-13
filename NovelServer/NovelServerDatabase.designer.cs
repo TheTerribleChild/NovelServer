@@ -55,20 +55,20 @@ namespace NovelServer
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Class1> Class1s
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<Class1>();
+				return this.GetTable<User>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
-	public partial class Class1
+	public partial class User
 	{
 		
-		public Class1()
+		public User()
 		{
 		}
 	}
