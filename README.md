@@ -1,0 +1,2 @@
+# NovelServer
+Novel Server GitHub
