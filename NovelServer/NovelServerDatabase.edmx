@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="EntityTesting.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="EntityTestingTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EntityTesting" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="EntityTestingContainer" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Novels" EntityType="EntityTesting.Novel" />
+          <EntitySet Name="Users" EntityType="EntityTesting.User" />
+          <EntitySet Name="Histories" EntityType="EntityTesting.History" />
+          <AssociationSet Name="UserHistory" Association="EntityTesting.UserHistory">
+            <End Role="History" EntitySet="Histories" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="ReadingLists" EntityType="EntityTesting.ReadingList" />
+          <AssociationSet Name="UserReadingList" Association="EntityTesting.UserReadingList">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ReadingList" EntitySet="ReadingLists" />
+          </AssociationSet>
+          <AssociationSet Name="ReadingNovelList" Association="EntityTesting.ReadingNovelList">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="ReadingList" EntitySet="ReadingLists" />
+          </AssociationSet>
+          <AssociationSet Name="NovelHistory" Association="EntityTesting.NovelHistory">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <EntitySet Name="Chapters" EntityType="EntityTesting.Chapter" />
+          <AssociationSet Name="ChapterHistory" Association="EntityTesting.ChapterHistory">
+            <End Role="History" EntitySet="Histories" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <EntitySet Name="Authors" EntityType="EntityTesting.Author" />
+          <EntitySet Name="Sources" EntityType="EntityTesting.Source" />
+          <EntitySet Name="WebURLs" EntityType="EntityTesting.WebURL" />
+          <AssociationSet Name="AuthorNovel" Association="EntityTesting.AuthorNovel">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Novel" EntitySet="Novels" />
+          </AssociationSet>
+          <AssociationSet Name="NovelChapters" Association="EntityTesting.NovelChapters">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <AssociationSet Name="NovelSources" Association="EntityTesting.NovelSources">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="Source" EntitySet="Sources" />
+          </AssociationSet>
+          <AssociationSet Name="ChapterWebURL" Association="EntityTesting.ChapterWebURL">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="WebURL" EntitySet="WebURLs" />
+          </AssociationSet>
+          <AssociationSet Name="SourceWebURL" Association="EntityTesting.SourceWebURL">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="WebURL" EntitySet="WebURLs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Novel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NovelName" Type="String" Nullable="false" />
+          <NavigationProperty Name="ReadingLists" Relationship="EntityTesting.ReadingNovelList" FromRole="Novel" ToRole="ReadingList" />
+          <NavigationProperty Name="Histories" Relationship="EntityTesting.NovelHistory" FromRole="Novel" ToRole="History" />
+          <NavigationProperty Name="Author" Relationship="EntityTesting.AuthorNovel" FromRole="Novel" ToRole="Author" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chapters" Relationship="EntityTesting.NovelChapters" FromRole="Novel" ToRole="Chapter" />
+          <NavigationProperty Name="Sources" Relationship="EntityTesting.NovelSources" FromRole="Novel" ToRole="Source" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="UserPasswordHash" Type="Int32" Nullable="false" />
+          <Property Name="UserPrivilege" Type="String" Nullable="false" />
+          <NavigationProperty Name="History" Relationship="EntityTesting.UserHistory" FromRole="User" ToRole="History" />
+          <NavigationProperty Name="ReadingList" Relationship="EntityTesting.UserReadingList" FromRole="User" ToRole="ReadingList" />
+        </EntityType>
+        <EntityType Name="History">
+          <Property Name="ReadTime" Type="DateTime" Nullable="false" />
+          <Property Name="Hidden" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="EntityTesting.UserHistory" FromRole="History" ToRole="User" />
+          <NavigationProperty Name="Novels" Relationship="EntityTesting.NovelHistory" FromRole="History" ToRole="Novel" />
+          <NavigationProperty Name="Chapters" Relationship="EntityTesting.ChapterHistory" FromRole="History" ToRole="Chapter" />
+        </EntityType>
+        <Association Name="UserHistory">
+          <End Type="EntityTesting.History" Role="History" Multiplicity="1" />
+          <End Type="EntityTesting.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ReadingList" >
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="EntityTesting.UserReadingList" FromRole="ReadingList" ToRole="User" />
+          <NavigationProperty Name="Novels" Relationship="EntityTesting.ReadingNovelList" FromRole="ReadingList" ToRole="Novel" />
+        </EntityType>
+        <Association Name="UserReadingList">
+          <End Type="EntityTesting.User" Role="User" Multiplicity="1" />
+          <End Type="EntityTesting.ReadingList" Role="ReadingList" Multiplicity="1" />
+        </Association>
+        <Association Name="ReadingNovelList">
+          <End Type="EntityTesting.Novel" Role="Novel" Multiplicity="*" />
+          <End Type="EntityTesting.ReadingList" Role="ReadingList" Multiplicity="*" />
+        </Association>
+        <Association Name="NovelHistory">
+          <End Type="EntityTesting.Novel" Role="Novel" Multiplicity="*" />
+          <End Type="EntityTesting.History" Role="History" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterName" Type="String" Nullable="false" />
+          <Property Name="ChapterIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Histories" Relationship="EntityTesting.ChapterHistory" FromRole="Chapter" ToRole="History" />
+          <NavigationProperty Name="Novel" Relationship="EntityTesting.NovelChapters" FromRole="Chapter" ToRole="Novel" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WebURLs" Relationship="EntityTesting.ChapterWebURL" FromRole="Chapter" ToRole="WebURL" />
+        </EntityType>
+        <Association Name="ChapterHistory">
+          <End Type="EntityTesting.History" Role="History" Multiplicity="*" />
+          <End Type="EntityTesting.Chapter" Role="Chapter" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Novels" Relationship="EntityTesting.AuthorNovel" FromRole="Author" ToRole="Novel" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceName" Type="String" Nullable="false" />
+          <Property Name="SourcePriority" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Novel" Relationship="EntityTesting.NovelSources" FromRole="Source" ToRole="Novel" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WebURLs" Relationship="EntityTesting.SourceWebURL" FromRole="Source" ToRole="WebURL" />
+        </EntityType>
+        <EntityType Name="WebURL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="EntityTesting.ChapterWebURL" FromRole="WebURL" ToRole="Chapter" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Source" Relationship="EntityTesting.SourceWebURL" FromRole="WebURL" ToRole="Source" />
+          <Property Name="SourceId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AuthorNovel">
+          <End Type="EntityTesting.Author" Role="Author" Multiplicity="1" />
+          <End Type="EntityTesting.Novel" Role="Novel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Novel">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NovelChapters">
+          <End Type="EntityTesting.Novel" Role="Novel" Multiplicity="1" />
+          <End Type="EntityTesting.Chapter" Role="Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="NovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NovelSources">
+          <End Type="EntityTesting.Novel" Role="Novel" Multiplicity="1" />
+          <End Type="EntityTesting.Source" Role="Source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Source">
+              <PropertyRef Name="NovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChapterWebURL">
+          <End Type="EntityTesting.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="EntityTesting.WebURL" Role="WebURL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebURL">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SourceWebURL">
+          <End Type="EntityTesting.Source" Role="Source" Multiplicity="1" />
+          <End Type="EntityTesting.WebURL" Role="WebURL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebURL">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="EntityTesting" />
+        <Alias Key="Target" Value="EntityTesting.Store" />
+        <EntityContainerMapping CdmEntityContainer="EntityTestingContainer" StorageEntityContainer="EntityTestingTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

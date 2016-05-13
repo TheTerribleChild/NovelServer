@@ -36,6 +36,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,15 +55,19 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NovelServerDatabase.designer.cs">
+    <Compile Include="EntityTesting.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NovelServerDatabase.dbml</DependentUpon>
+      <DependentUpon>EntityTesting.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="NovelServerDatabase.dbml.layout">
-      <DependentUpon>NovelServerDatabase.dbml</DependentUpon>
+    <EntityDeploy Include="EntityTesting.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityTesting.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityTesting.edmx.diagram">
+      <DependentUpon>EntityTesting.edmx</DependentUpon>
     </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -72,11 +78,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="NovelServerDatabase.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>NovelServerDatabase.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

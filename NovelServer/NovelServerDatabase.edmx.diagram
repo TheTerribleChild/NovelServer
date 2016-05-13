@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7c9aa2e7c854cf0bdef2299e616bdda" Name="Diagram1" >
+        <EntityTypeShape EntityType="EntityTesting.Novel" Width="1.5" PointX="3.25" PointY="4.875" />
+        <EntityTypeShape EntityType="EntityTesting.User" Width="2.5" PointX="2.875" PointY="0.875" />
+        <EntityTypeShape EntityType="EntityTesting.History" Width="1.5" PointX="6" PointY="0.875" />
+        <EntityTypeShape EntityType="EntityTesting.UserReadList" Width="1.5" PointX="11.5" PointY="2.25" />
+        <EntityTypeShape EntityType="EntityTesting.Chapter" Width="1.5" PointX="14" PointY="2.25" />
+        <EntityTypeShape EntityType="EntityTesting.Source" Width="1.5" PointX="9" PointY="4.875" />
+        <EntityTypeShape EntityType="EntityTesting.WebURL" Width="1.5" PointX="11.625" PointY="4.875" />
+        <EntityTypeShape EntityType="EntityTesting.Author" Width="1.5" PointX="5" PointY="7.375" />
+        <AssociationConnector Association="EntityTesting.Histories" />
+        <AssociationConnector Association="EntityTesting.UserHistory" />
+        <EntityTypeShape EntityType="EntityTesting.ReadingList" Width="1.5" PointX="0.5" PointY="0.875" />
+        <AssociationConnector Association="EntityTesting.UserReadingList" />
+        <AssociationConnector Association="EntityTesting.ReadingNovelList" />
+        <AssociationConnector Association="EntityTesting.NovelHistory" />
+        <EntityTypeShape EntityType="EntityTesting.Chapter" Width="1.5" PointX="7" PointY="4.625" />
+        <AssociationConnector Association="EntityTesting.ChapterHistory" />
+        <EntityTypeShape EntityType="EntityTesting.Author" Width="1.5" PointX="0.625" PointY="5.5" />
+        <EntityTypeShape EntityType="EntityTesting.Source" Width="1.5" PointX="7" PointY="7.375" />
+        <EntityTypeShape EntityType="EntityTesting.WebURL" Width="1.5" PointX="10.375" PointY="4.625" />
+        <AssociationConnector Association="EntityTesting.AuthorNovel" />
+        <AssociationConnector Association="EntityTesting.NovelChapters" />
+        <AssociationConnector Association="EntityTesting.NovelSources" />
+        <AssociationConnector Association="EntityTesting.ChapterWebURL" />
+        <AssociationConnector Association="EntityTesting.SourceWebURL" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
