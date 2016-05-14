@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/12/2016 23:23:30
+-- Date Created: 05/12/2016 23:48:14
 -- Generated from EDMX file: D:\Dev\Project\CS\NovelServer\NovelServer\NovelServer\ServerDatabase.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,74 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_AuthorNovel]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Novels] DROP CONSTRAINT [FK_AuthorNovel];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelChapters]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Chapters] DROP CONSTRAINT [FK_NovelChapters];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelSources]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sources] DROP CONSTRAINT [FK_NovelSources];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelHistory_History]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NovelHistory] DROP CONSTRAINT [FK_NovelHistory_History];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelHistory_Novel]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NovelHistory] DROP CONSTRAINT [FK_NovelHistory_Novel];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ReadingListNovels_ReadingList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReadingListNovels] DROP CONSTRAINT [FK_ReadingListNovels_ReadingList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ReadingListNovels_Novel]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReadingListNovels] DROP CONSTRAINT [FK_ReadingListNovels_Novel];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReadingList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReadingLists] DROP CONSTRAINT [FK_UserReadingList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ChapterWebURL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WebURLs] DROP CONSTRAINT [FK_ChapterWebURL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SourceWebURL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WebURLs] DROP CONSTRAINT [FK_SourceWebURL];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Novels]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Novels];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Chapters]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Chapters];
+GO
+IF OBJECT_ID(N'[dbo].[Sources]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Sources];
+GO
+IF OBJECT_ID(N'[dbo].[WebURLs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WebURLs];
+GO
+IF OBJECT_ID(N'[dbo].[Authors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Authors];
+GO
+IF OBJECT_ID(N'[dbo].[Histories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Histories];
+GO
+IF OBJECT_ID(N'[dbo].[ReadingLists]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ReadingLists];
+GO
+IF OBJECT_ID(N'[dbo].[NovelHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NovelHistory];
+GO
+IF OBJECT_ID(N'[dbo].[ReadingListNovels]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ReadingListNovels];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -42,6 +105,7 @@ CREATE TABLE [dbo].[Users] (
     [UserName] nvarchar(max)  NOT NULL,
     [UserPasswordHash] int  NOT NULL,
     [UserPrivilege] nvarchar(max)  NOT NULL,
+    [UserGroup] nvarchar(max)  NOT NULL,
     [History_Id] int  NOT NULL
 );
 GO

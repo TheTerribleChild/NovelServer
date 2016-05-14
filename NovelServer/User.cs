@@ -19,6 +19,7 @@ namespace NovelServer
         public string UserName { get; set; }
         public int UserPasswordHash { get; set; }
         public string UserPrivilege { get; set; }
+        public string UserGroup { get; set; }
     
         public virtual History History { get; set; }
         public virtual ReadingList ReadingList { get; set; }

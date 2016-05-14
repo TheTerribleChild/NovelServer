@@ -78,6 +78,7 @@
     <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserPasswordHash" Type="int" Nullable="false" />
     <Property Name="UserPrivilege" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserGroup" Type="nvarchar(max)" Nullable="false" />
     <Property Name="History_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Chapters">
@@ -353,6 +354,7 @@
           <Property Name="UserPrivilege" Type="String" Nullable="false" />
           <NavigationProperty Name="History" Relationship="ServerDatabase.UserHistory" FromRole="User" ToRole="History" />
           <NavigationProperty Name="ReadingList" Relationship="ServerDatabase.UserReadingList" FromRole="User" ToRole="ReadingList" />
+          <Property Name="UserGroup" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Chapter">
           <Key>
@@ -514,6 +516,7 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserPasswordHash" ColumnName="UserPasswordHash" />
           <ScalarProperty Name="UserPrivilege" ColumnName="UserPrivilege" />
+          <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
