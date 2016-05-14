@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/12/2016 23:48:14
+-- Date Created: 05/14/2016 13:25:03
 -- Generated from EDMX file: D:\Dev\Project\CS\NovelServer\NovelServer\NovelServer\ServerDatabase.edmx
 -- --------------------------------------------------
 
@@ -94,7 +94,8 @@ GO
 CREATE TABLE [dbo].[Novels] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [NovelName] nvarchar(max)  NOT NULL,
-    [AuthorId] int  NOT NULL
+    [AuthorId] int  NOT NULL,
+    [Status] int  NOT NULL
 );
 GO
 
@@ -156,7 +157,6 @@ GO
 CREATE TABLE [dbo].[ReadingLists] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Position] int  NOT NULL,
-    [Status] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
 );
 GO
@@ -172,6 +172,13 @@ GO
 CREATE TABLE [dbo].[ReadingListNovels] (
     [ReadingLists_Id] int  NOT NULL,
     [Novels_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'ChapterHistory'
+CREATE TABLE [dbo].[ChapterHistory] (
+    [Chapters_Id] int  NOT NULL,
+    [Histories_Id] int  NOT NULL
 );
 GO
 
@@ -237,6 +244,12 @@ GO
 ALTER TABLE [dbo].[ReadingListNovels]
 ADD CONSTRAINT [PK_ReadingListNovels]
     PRIMARY KEY CLUSTERED ([ReadingLists_Id], [Novels_Id] ASC);
+GO
+
+-- Creating primary key on [Chapters_Id], [Histories_Id] in table 'ChapterHistory'
+ALTER TABLE [dbo].[ChapterHistory]
+ADD CONSTRAINT [PK_ChapterHistory]
+    PRIMARY KEY CLUSTERED ([Chapters_Id], [Histories_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -394,6 +407,30 @@ GO
 CREATE INDEX [IX_FK_SourceWebURL]
 ON [dbo].[WebURLs]
     ([SourceId]);
+GO
+
+-- Creating foreign key on [Chapters_Id] in table 'ChapterHistory'
+ALTER TABLE [dbo].[ChapterHistory]
+ADD CONSTRAINT [FK_ChapterHistory_Chapter]
+    FOREIGN KEY ([Chapters_Id])
+    REFERENCES [dbo].[Chapters]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Histories_Id] in table 'ChapterHistory'
+ALTER TABLE [dbo].[ChapterHistory]
+ADD CONSTRAINT [FK_ChapterHistory_History]
+    FOREIGN KEY ([Histories_Id])
+    REFERENCES [dbo].[Histories]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ChapterHistory_History'
+CREATE INDEX [IX_FK_ChapterHistory_History]
+ON [dbo].[ChapterHistory]
+    ([Histories_Id]);
 GO
 
 -- --------------------------------------------------

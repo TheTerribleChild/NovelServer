@@ -81,6 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NovelServerModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NovelStatus.cs">
+      <DependentUpon>ServerDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadingList.cs">
@@ -96,10 +99,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ServerDatabase.Designer.cs">
+    <Compile Include="ServerEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ServerDatabase.edmx</DependentUpon>
+      <DependentUpon>ServerEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Source.cs">
       <DependentUpon>ServerDatabase.tt</DependentUpon>
@@ -129,12 +132,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="ServerDatabase.edmx">
+    <EntityDeploy Include="ServerEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ServerDatabase.Designer.cs</LastGenOutput>
+      <LastGenOutput>ServerEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ServerDatabase.edmx.diagram">
-      <DependentUpon>ServerDatabase.edmx</DependentUpon>
+    <None Include="ServerEntity.edmx.diagram">
+      <DependentUpon>ServerEntity.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -148,18 +151,18 @@
     <Content Include="NovelServerModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NovelServerModel.cs</LastGenOutput>
-      <DependentUpon>ServerDatabase.edmx</DependentUpon>
+      <DependentUpon>ServerEntity.edmx</DependentUpon>
     </Content>
     <Content Include="ServerDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServerDatabase.Context.cs</LastGenOutput>
-      <DependentUpon>ServerDatabase.edmx</DependentUpon>
+      <DependentUpon>ServerEntity.edmx</DependentUpon>
     </Content>
     <Content Include="ServerDatabase.edmx.sql" />
     <Content Include="ServerDatabase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServerDatabase.cs</LastGenOutput>
-      <DependentUpon>ServerDatabase.edmx</DependentUpon>
+      <DependentUpon>ServerEntity.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

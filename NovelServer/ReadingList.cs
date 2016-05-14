@@ -22,7 +22,6 @@ namespace NovelServer
     
         public int Id { get; set; }
         public int Position { get; set; }
-        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Novel> Novels { get; set; }
