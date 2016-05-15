@@ -14,21 +14,15 @@ namespace NovelServer
     
     public partial class History
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public History()
-        {
-            this.Novels = new HashSet<Novel>();
-            this.Chapters = new HashSet<Chapter>();
-        }
-    
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public int NovelId { get; set; }
+        public int ChapterId { get; set; }
         public System.DateTime ReadTime { get; set; }
         public bool Hidden { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Novel> Novels { get; set; }
         public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chapter> Chapters { get; set; }
+        public virtual Novel Novel { get; set; }
+        public virtual Chapter Chapter { get; set; }
     }
 }

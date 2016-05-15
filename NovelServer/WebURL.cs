@@ -15,9 +15,9 @@ namespace NovelServer
     public partial class WebURL
     {
         public int Id { get; set; }
-        public string Url { get; set; }
-        public int ChapterId { get; set; }
         public int SourceId { get; set; }
+        public int ChapterId { get; set; }
+        public string Url { get; set; }
     
         public virtual Chapter Chapter { get; set; }
         public virtual Source Source { get; set; }

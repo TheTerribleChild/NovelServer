@@ -14,17 +14,12 @@ namespace NovelServer
     
     public partial class ReadingList
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ReadingList()
-        {
-            this.Novels = new HashSet<Novel>();
-        }
-    
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public int NovelId { get; set; }
         public int Position { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Novel> Novels { get; set; }
         public virtual User User { get; set; }
+        public virtual Novel Novel { get; set; }
     }
 }

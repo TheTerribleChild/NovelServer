@@ -14,6 +14,13 @@ namespace NovelServer
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.ReadingLists = new HashSet<ReadingList>();
+            this.Histories = new HashSet<History>();
+        }
+    
         public int Id { get; set; }
         public string UserEmail { get; set; }
         public string UserName { get; set; }
@@ -21,7 +28,9 @@ namespace NovelServer
         public string UserPrivilege { get; set; }
         public string UserGroup { get; set; }
     
-        public virtual History History { get; set; }
-        public virtual ReadingList ReadingList { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReadingList> ReadingLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> Histories { get; set; }
     }
 }

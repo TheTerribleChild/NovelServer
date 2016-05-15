@@ -135,8 +135,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Position" Type="int" Nullable="false" />
     <Property Name="NovelId" Type="int" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ReadingListNovels">
     <Key>
@@ -655,8 +655,8 @@
         <MappingFragment StoreEntitySet="ReadingLists">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="NovelId" ColumnName="NovelId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

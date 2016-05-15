@@ -13,10 +13,10 @@ namespace NovelServer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServerDatabaseContainer : DbContext
+    public partial class ServerEntityContext : DbContext
     {
-        public ServerDatabaseContainer()
-            : base("name=ServerDatabaseContainer")
+        public ServerEntityContext()
+            : base("name=ServerEntityContext")
         {
         }
     

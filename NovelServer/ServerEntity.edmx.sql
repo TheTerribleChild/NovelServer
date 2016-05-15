@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/14/2016 23:24:55
+-- Date Created: 05/14/2016 23:41:17
 -- Generated from EDMX file: D:\Dev\Project\CS\NovelServer\NovelServer\NovelServer\ServerEntity.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [NovelSever];
+USE [ServerEntity];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -32,17 +32,26 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ReadingListNovels_Novel]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ReadingListNovels] DROP CONSTRAINT [FK_ReadingListNovels_Novel];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserHistory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserHistory];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserReadingList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ReadingLists] DROP CONSTRAINT [FK_UserReadingList];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ChapterWebURL]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WebURLs] DROP CONSTRAINT [FK_ChapterWebURL];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SourceWebURL]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WebURLs] DROP CONSTRAINT [FK_SourceWebURL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserReadingList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReadingLists] DROP CONSTRAINT [FK_UserReadingList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Histories] DROP CONSTRAINT [FK_UserHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Histories] DROP CONSTRAINT [FK_NovelHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ChapterHistory]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Histories] DROP CONSTRAINT [FK_ChapterHistory];
+GO
+IF OBJECT_ID(N'[dbo].[FK_NovelReadingList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ReadingLists] DROP CONSTRAINT [FK_NovelReadingList];
 GO
 
 -- --------------------------------------------------
@@ -150,8 +159,8 @@ GO
 CREATE TABLE [dbo].[ReadingLists] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [UserId] int  NOT NULL,
-    [Position] int  NOT NULL,
-    [NovelId] int  NOT NULL
+    [NovelId] int  NOT NULL,
+    [Position] int  NOT NULL
 );
 GO
 

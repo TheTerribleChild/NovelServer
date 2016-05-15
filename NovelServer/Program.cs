@@ -14,6 +14,14 @@ namespace NovelServer
         [STAThread]
         static void Main()
         {
+            EntityAccessor ea = EntityAccessor.getInstance();
+
+            using(var context = new ServerEntityContext())
+            {
+                context.Users.Add(new User() { UserEmail = "aa", UserGroup = "ssd", UserName = "asd", UserPasswordHash = 123, UserPrivilege = "asddf" });
+                context.SaveChanges();
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new AdminForm());
