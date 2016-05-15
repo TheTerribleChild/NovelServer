@@ -4,70 +4,64 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ServerDatabase.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ServerDatabaseStoreContainer">
-    <EntitySet Name="Novels" EntityType="ServerDatabase.Store.Novels" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="ServerDatabase.Store.Users" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Chapters" EntityType="ServerDatabase.Store.Chapters" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Sources" EntityType="ServerDatabase.Store.Sources" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="WebURLs" EntityType="ServerDatabase.Store.WebURLs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Authors" EntityType="ServerDatabase.Store.Authors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Histories" EntityType="ServerDatabase.Store.Histories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReadingLists" EntityType="ServerDatabase.Store.ReadingLists" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="NovelHistory" EntityType="ServerDatabase.Store.NovelHistory" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ReadingListNovels" EntityType="ServerDatabase.Store.ReadingListNovels" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ChapterHistory" EntityType="ServerDatabase.Store.ChapterHistory" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="AuthorNovel" Association="ServerDatabase.Store.AuthorNovel">
+    <Schema Namespace="ServerEntity.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ServerEntityStoreContainer">
+    <EntitySet Name="Novels" EntityType="ServerEntity.Store.Novels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="ServerEntity.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Chapters" EntityType="ServerEntity.Store.Chapters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sources" EntityType="ServerEntity.Store.Sources" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WebURLs" EntityType="ServerEntity.Store.WebURLs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Authors" EntityType="ServerEntity.Store.Authors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Histories" EntityType="ServerEntity.Store.Histories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReadingLists" EntityType="ServerEntity.Store.ReadingLists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReadingListNovels" EntityType="ServerEntity.Store.ReadingListNovels" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AuthorNovel" Association="ServerEntity.Store.AuthorNovel">
       <End Role="Author" EntitySet="Authors" />
       <End Role="Novel" EntitySet="Novels" />
     </AssociationSet>
-    <AssociationSet Name="NovelChapters" Association="ServerDatabase.Store.NovelChapters">
+    <AssociationSet Name="NovelChapters" Association="ServerEntity.Store.NovelChapters">
       <End Role="Novel" EntitySet="Novels" />
       <End Role="Chapter" EntitySet="Chapters" />
     </AssociationSet>
-    <AssociationSet Name="NovelSources" Association="ServerDatabase.Store.NovelSources">
+    <AssociationSet Name="NovelSources" Association="ServerEntity.Store.NovelSources">
       <End Role="Novel" EntitySet="Novels" />
       <End Role="Source" EntitySet="Sources" />
     </AssociationSet>
-    <AssociationSet Name="FK_NovelHistory_History" Association="ServerDatabase.Store.FK_NovelHistory_History">
-      <End Role="History" EntitySet="Histories" />
-      <End Role="NovelHistory" EntitySet="NovelHistory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NovelHistory_Novel" Association="ServerDatabase.Store.FK_NovelHistory_Novel">
-      <End Role="Novel" EntitySet="Novels" />
-      <End Role="NovelHistory" EntitySet="NovelHistory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ReadingListNovels_ReadingList" Association="ServerDatabase.Store.FK_ReadingListNovels_ReadingList">
+    <AssociationSet Name="FK_ReadingListNovels_ReadingList" Association="ServerEntity.Store.FK_ReadingListNovels_ReadingList">
       <End Role="ReadingList" EntitySet="ReadingLists" />
       <End Role="ReadingListNovels" EntitySet="ReadingListNovels" />
     </AssociationSet>
-    <AssociationSet Name="FK_ReadingListNovels_Novel" Association="ServerDatabase.Store.FK_ReadingListNovels_Novel">
+    <AssociationSet Name="FK_ReadingListNovels_Novel" Association="ServerEntity.Store.FK_ReadingListNovels_Novel">
       <End Role="Novel" EntitySet="Novels" />
       <End Role="ReadingListNovels" EntitySet="ReadingListNovels" />
     </AssociationSet>
-    <AssociationSet Name="UserHistory" Association="ServerDatabase.Store.UserHistory">
-      <End Role="User" EntitySet="Users" />
-      <End Role="History" EntitySet="Histories" />
-    </AssociationSet>
-    <AssociationSet Name="UserReadingList" Association="ServerDatabase.Store.UserReadingList">
-      <End Role="ReadingList" EntitySet="ReadingLists" />
-      <End Role="User" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="ChapterWebURL" Association="ServerDatabase.Store.ChapterWebURL">
+    <AssociationSet Name="ChapterWebURL" Association="ServerEntity.Store.ChapterWebURL">
       <End Role="Chapter" EntitySet="Chapters" />
       <End Role="WebURL" EntitySet="WebURLs" />
     </AssociationSet>
-    <AssociationSet Name="SourceWebURL" Association="ServerDatabase.Store.SourceWebURL">
+    <AssociationSet Name="SourceWebURL" Association="ServerEntity.Store.SourceWebURL">
       <End Role="Source" EntitySet="Sources" />
       <End Role="WebURL" EntitySet="WebURLs" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChapterHistory_Chapter" Association="ServerDatabase.Store.FK_ChapterHistory_Chapter">
-      <End Role="Chapter" EntitySet="Chapters" />
-      <End Role="ChapterHistory" EntitySet="ChapterHistory" />
+    <AssociationSet Name="UserReadingList" Association="ServerEntity.Store.UserReadingList">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ReadingList" EntitySet="ReadingLists" />
     </AssociationSet>
-    <AssociationSet Name="FK_ChapterHistory_History" Association="ServerDatabase.Store.FK_ChapterHistory_History">
+    <AssociationSet Name="UserHistory" Association="ServerEntity.Store.UserHistory">
+      <End Role="User" EntitySet="Users" />
       <End Role="History" EntitySet="Histories" />
-      <End Role="ChapterHistory" EntitySet="ChapterHistory" />
+    </AssociationSet>
+    <AssociationSet Name="NovelHistory" Association="ServerEntity.Store.NovelHistory">
+      <End Role="Novel" EntitySet="Novels" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="ChapterHistory" Association="ServerEntity.Store.ChapterHistory">
+      <End Role="Chapter" EntitySet="Chapters" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="NovelReadingList" Association="ServerEntity.Store.NovelReadingList">
+      <End Role="Novel" EntitySet="Novels" />
+      <End Role="ReadingList" EntitySet="ReadingLists" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Novels">
@@ -75,8 +69,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NovelName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="NovelName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
@@ -89,34 +83,33 @@
     <Property Name="UserPasswordHash" Type="int" Nullable="false" />
     <Property Name="UserPrivilege" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserGroup" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="History_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Chapters">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NovelId" Type="int" Nullable="false" />
     <Property Name="ChapterName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ChapterIndex" Type="int" Nullable="false" />
-    <Property Name="NovelId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Sources">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NovelId" Type="int" Nullable="false" />
     <Property Name="SourceName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="SourcePriority" Type="int" Nullable="false" />
-    <Property Name="NovelId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="WebURLs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ChapterId" Type="int" Nullable="false" />
     <Property Name="SourceId" Type="int" Nullable="false" />
+    <Property Name="ChapterId" Type="int" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Authors">
     <Key>
@@ -130,6 +123,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="NovelId" Type="int" Nullable="false" />
+    <Property Name="ChapterId" Type="int" Nullable="false" />
     <Property Name="ReadTime" Type="datetime" Nullable="false" />
     <Property Name="Hidden" Type="bit" Nullable="false" />
   </EntityType>
@@ -138,36 +134,21 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Position" Type="int" Nullable="false" />
-    <Property Name="User_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="NovelHistory">
-    <Key>
-      <PropertyRef Name="Histories_Id" />
-      <PropertyRef Name="Novels_Id" />
-    </Key>
-    <Property Name="Histories_Id" Type="int" Nullable="false" />
-    <Property Name="Novels_Id" Type="int" Nullable="false" />
+    <Property Name="NovelId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ReadingListNovels">
     <Key>
-      <PropertyRef Name="ReadingLists_Id" />
-      <PropertyRef Name="Novels_Id" />
+      <PropertyRef Name="ReadingListNovels_Novel_Id" />
+      <PropertyRef Name="ReadingListNovels_ReadingList_Id" />
     </Key>
-    <Property Name="ReadingLists_Id" Type="int" Nullable="false" />
-    <Property Name="Novels_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ChapterHistory">
-    <Key>
-      <PropertyRef Name="Chapters_Id" />
-      <PropertyRef Name="Histories_Id" />
-    </Key>
-    <Property Name="Chapters_Id" Type="int" Nullable="false" />
-    <Property Name="Histories_Id" Type="int" Nullable="false" />
+    <Property Name="ReadingListNovels_Novel_Id" Type="int" Nullable="false" />
+    <Property Name="ReadingListNovels_ReadingList_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AuthorNovel">
-    <End Role="Author" Type="ServerDatabase.Store.Authors" Multiplicity="1" />
-    <End Role="Novel" Type="ServerDatabase.Store.Novels" Multiplicity="*" />
+    <End Role="Author" Type="ServerEntity.Store.Authors" Multiplicity="1" />
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Author">
         <PropertyRef Name="Id" />
@@ -178,8 +159,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="NovelChapters">
-    <End Role="Novel" Type="ServerDatabase.Store.Novels" Multiplicity="1" />
-    <End Role="Chapter" Type="ServerDatabase.Store.Chapters" Multiplicity="*" />
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="1" />
+    <End Role="Chapter" Type="ServerEntity.Store.Chapters" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Novel">
         <PropertyRef Name="Id" />
@@ -190,8 +171,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="NovelSources">
-    <End Role="Novel" Type="ServerDatabase.Store.Novels" Multiplicity="1" />
-    <End Role="Source" Type="ServerDatabase.Store.Sources" Multiplicity="*" />
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="1" />
+    <End Role="Source" Type="ServerEntity.Store.Sources" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Novel">
         <PropertyRef Name="Id" />
@@ -201,33 +182,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserHistory">
-    <End Role="User" Type="ServerDatabase.Store.Users" Multiplicity="*" />
-    <End Role="History" Type="ServerDatabase.Store.Histories" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="History">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="History_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserReadingList">
-    <End Role="ReadingList" Type="ServerDatabase.Store.ReadingLists" Multiplicity="*" />
-    <End Role="User" Type="ServerDatabase.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ReadingList">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ChapterWebURL">
-    <End Role="Chapter" Type="ServerDatabase.Store.Chapters" Multiplicity="1" />
-    <End Role="WebURL" Type="ServerDatabase.Store.WebURLs" Multiplicity="*" />
+    <End Role="Chapter" Type="ServerEntity.Store.Chapters" Multiplicity="1" />
+    <End Role="WebURL" Type="ServerEntity.Store.WebURLs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Chapter">
         <PropertyRef Name="Id" />
@@ -238,8 +195,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SourceWebURL">
-    <End Role="Source" Type="ServerDatabase.Store.Sources" Multiplicity="1" />
-    <End Role="WebURL" Type="ServerDatabase.Store.WebURLs" Multiplicity="*" />
+    <End Role="Source" Type="ServerEntity.Store.Sources" Multiplicity="1" />
+    <End Role="WebURL" Type="ServerEntity.Store.WebURLs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Source">
         <PropertyRef Name="Id" />
@@ -249,75 +206,87 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_NovelHistory_History">
-    <End Role="History" Type="ServerDatabase.Store.Histories" Multiplicity="1" />
-    <End Role="NovelHistory" Type="ServerDatabase.Store.NovelHistory" Multiplicity="*" />
+  <Association Name="UserReadingList">
+    <End Role="User" Type="ServerEntity.Store.Users" Multiplicity="1" />
+    <End Role="ReadingList" Type="ServerEntity.Store.ReadingLists" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="History">
+      <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="NovelHistory">
-        <PropertyRef Name="Histories_Id" />
+      <Dependent Role="ReadingList">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_NovelHistory_Novel">
-    <End Role="NovelHistory" Type="ServerDatabase.Store.NovelHistory" Multiplicity="*" />
-    <End Role="Novel" Type="ServerDatabase.Store.Novels" Multiplicity="1" />
+  <Association Name="UserHistory">
+    <End Role="User" Type="ServerEntity.Store.Users" Multiplicity="1" />
+    <End Role="History" Type="ServerEntity.Store.Histories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NovelHistory">
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="1" />
+    <End Role="History" Type="ServerEntity.Store.Histories" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Novel">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="NovelHistory">
-        <PropertyRef Name="Novels_Id" />
+      <Dependent Role="History">
+        <PropertyRef Name="NovelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChapterHistory">
+    <End Role="Chapter" Type="ServerEntity.Store.Chapters" Multiplicity="1" />
+    <End Role="History" Type="ServerEntity.Store.Histories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chapter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="ChapterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NovelReadingList">
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="1" />
+    <End Role="ReadingList" Type="ServerEntity.Store.ReadingLists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Novel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReadingList">
+        <PropertyRef Name="NovelId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ReadingListNovels_ReadingList">
-    <End Role="ReadingList" Type="ServerDatabase.Store.ReadingLists" Multiplicity="1" />
-    <End Role="ReadingListNovels" Type="ServerDatabase.Store.ReadingListNovels" Multiplicity="*" />
+    <End Role="ReadingList" Type="ServerEntity.Store.ReadingLists" Multiplicity="1" />
+    <End Role="ReadingListNovels" Type="ServerEntity.Store.ReadingListNovels" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ReadingList">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ReadingListNovels">
-        <PropertyRef Name="ReadingLists_Id" />
+        <PropertyRef Name="ReadingListNovels_Novel_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ReadingListNovels_Novel">
-    <End Role="ReadingListNovels" Type="ServerDatabase.Store.ReadingListNovels" Multiplicity="*" />
-    <End Role="Novel" Type="ServerDatabase.Store.Novels" Multiplicity="1" />
+    <End Role="ReadingListNovels" Type="ServerEntity.Store.ReadingListNovels" Multiplicity="*" />
+    <End Role="Novel" Type="ServerEntity.Store.Novels" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Novel">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ReadingListNovels">
-        <PropertyRef Name="Novels_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChapterHistory_Chapter">
-    <End Role="Chapter" Type="ServerDatabase.Store.Chapters" Multiplicity="1" />
-    <End Role="ChapterHistory" Type="ServerDatabase.Store.ChapterHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Chapter">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChapterHistory">
-        <PropertyRef Name="Chapters_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ChapterHistory_History">
-    <End Role="ChapterHistory" Type="ServerDatabase.Store.ChapterHistory" Multiplicity="*" />
-    <End Role="History" Type="ServerDatabase.Store.Histories" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="History">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ChapterHistory">
-        <PropertyRef Name="Histories_Id" />
+        <PropertyRef Name="ReadingListNovels_ReadingList_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -325,7 +294,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ServerEntity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="ServerEntityContainer" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ServerEntityContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Novels" EntityType="ServerEntity.Novel" />
           <EntitySet Name="Users" EntityType="ServerEntity.User" />
           <EntitySet Name="Chapters" EntityType="ServerEntity.Chapter" />
@@ -346,21 +315,9 @@
             <End Role="Novel" EntitySet="Novels" />
             <End Role="Source" EntitySet="Sources" />
           </AssociationSet>
-          <AssociationSet Name="NovelHistory" Association="ServerEntity.NovelHistory">
-            <End Role="History" EntitySet="Histories" />
-            <End Role="Novel" EntitySet="Novels" />
-          </AssociationSet>
           <AssociationSet Name="ReadingListNovels" Association="ServerEntity.ReadingListNovels">
             <End Role="ReadingList" EntitySet="ReadingLists" />
             <End Role="Novel" EntitySet="Novels" />
-          </AssociationSet>
-          <AssociationSet Name="UserHistory" Association="ServerEntity.UserHistory">
-            <End Role="User" EntitySet="Users" />
-            <End Role="History" EntitySet="Histories" />
-          </AssociationSet>
-          <AssociationSet Name="UserReadingList" Association="ServerEntity.UserReadingList">
-            <End Role="ReadingList" EntitySet="ReadingLists" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="ChapterWebURL" Association="ServerEntity.ChapterWebURL">
             <End Role="Chapter" EntitySet="Chapters" />
@@ -370,24 +327,40 @@
             <End Role="Source" EntitySet="Sources" />
             <End Role="WebURL" EntitySet="WebURLs" />
           </AssociationSet>
+          <AssociationSet Name="UserReadingList" Association="ServerEntity.UserReadingList">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ReadingList" EntitySet="ReadingLists" />
+          </AssociationSet>
+          <AssociationSet Name="UserHistory" Association="ServerEntity.UserHistory">
+            <End Role="User" EntitySet="Users" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="NovelHistory" Association="ServerEntity.NovelHistory">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
           <AssociationSet Name="ChapterHistory" Association="ServerEntity.ChapterHistory">
             <End Role="Chapter" EntitySet="Chapters" />
             <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="NovelReadingList" Association="ServerEntity.NovelReadingList">
+            <End Role="Novel" EntitySet="Novels" />
+            <End Role="ReadingList" EntitySet="ReadingLists" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Novel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NovelName" Type="String" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="NovelName" Type="String" Nullable="false" />
           <NavigationProperty Name="Author" Relationship="ServerEntity.AuthorNovel" FromRole="Novel" ToRole="Author" />
           <NavigationProperty Name="Chapters" Relationship="ServerEntity.NovelChapters" FromRole="Novel" ToRole="Chapter" />
           <NavigationProperty Name="Sources" Relationship="ServerEntity.NovelSources" FromRole="Novel" ToRole="Source" />
+          <Property Name="Status" Type="ServerEntity.NovelStatus" Nullable="false" />
           <NavigationProperty Name="Histories" Relationship="ServerEntity.NovelHistory" FromRole="Novel" ToRole="History" />
-          <NavigationProperty Name="ReadingLists" Relationship="ServerEntity.ReadingListNovels" FromRole="Novel" ToRole="ReadingList" />
-          <Property Name="Status" Type="ServerDatabase.NovelStatus" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="ReadingLists" Relationship="ServerEntity.NovelReadingList" FromRole="Novel" ToRole="ReadingList" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -398,18 +371,18 @@
           <Property Name="UserName" Type="String" Nullable="false" />
           <Property Name="UserPasswordHash" Type="Int32" Nullable="false" />
           <Property Name="UserPrivilege" Type="String" Nullable="false" />
-          <NavigationProperty Name="History" Relationship="ServerEntity.UserHistory" FromRole="User" ToRole="History" />
-          <NavigationProperty Name="ReadingList" Relationship="ServerEntity.UserReadingList" FromRole="User" ToRole="ReadingList" />
           <Property Name="UserGroup" Type="String" Nullable="false" />
+          <NavigationProperty Name="ReadingLists" Relationship="ServerEntity.UserReadingList" FromRole="User" ToRole="ReadingList" />
+          <NavigationProperty Name="Histories" Relationship="ServerEntity.UserHistory" FromRole="User" ToRole="History" />
         </EntityType>
         <EntityType Name="Chapter">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
           <Property Name="ChapterName" Type="String" Nullable="false" />
           <Property Name="ChapterIndex" Type="Int32" Nullable="false" />
-          <Property Name="NovelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Novel" Relationship="ServerEntity.NovelChapters" FromRole="Chapter" ToRole="Novel" />
           <NavigationProperty Name="WebURLs" Relationship="ServerEntity.ChapterWebURL" FromRole="Chapter" ToRole="WebURL" />
           <NavigationProperty Name="Histories" Relationship="ServerEntity.ChapterHistory" FromRole="Chapter" ToRole="History" />
@@ -418,10 +391,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
           <Property Name="SourceName" Type="String" Nullable="false" />
           <Property Name="SourcePriority" Type="Int32" Nullable="false" />
-          <Property Name="NovelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Novel" Relationship="ServerEntity.NovelSources" FromRole="Source" ToRole="Novel" />
           <NavigationProperty Name="WebURLs" Relationship="ServerEntity.SourceWebURL" FromRole="Source" ToRole="WebURL" />
         </EntityType>
@@ -429,10 +402,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Url" Type="String" Nullable="false" />
-          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="SourceId" Type="Int32" Nullable="false" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="false" />
           <NavigationProperty Name="Chapter" Relationship="ServerEntity.ChapterWebURL" FromRole="WebURL" ToRole="Chapter" />
           <NavigationProperty Name="Source" Relationship="ServerEntity.SourceWebURL" FromRole="WebURL" ToRole="Source" />
         </EntityType>
@@ -448,21 +421,26 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
           <Property Name="ReadTime" Type="DateTime" Nullable="false" />
           <Property Name="Hidden" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Novels" Relationship="ServerEntity.NovelHistory" FromRole="History" ToRole="Novel" />
           <NavigationProperty Name="User" Relationship="ServerEntity.UserHistory" FromRole="History" ToRole="User" />
-          <NavigationProperty Name="Chapters" Relationship="ServerEntity.ChapterHistory" FromRole="History" ToRole="Chapter" />
+          <NavigationProperty Name="Novel" Relationship="ServerEntity.NovelHistory" FromRole="History" ToRole="Novel" />
+          <NavigationProperty Name="Chapter" Relationship="ServerEntity.ChapterHistory" FromRole="History" ToRole="Chapter" />
         </EntityType>
         <EntityType Name="ReadingList">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="NovelId" Type="Int32" Nullable="false" />
           <Property Name="Position" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Novels" Relationship="ServerEntity.ReadingListNovels" FromRole="ReadingList" ToRole="Novel" />
           <NavigationProperty Name="User" Relationship="ServerEntity.UserReadingList" FromRole="ReadingList" ToRole="User" />
+          <NavigationProperty Name="Novel" Relationship="ServerEntity.NovelReadingList" FromRole="ReadingList" ToRole="Novel" />
         </EntityType>
         <Association Name="AuthorNovel">
           <End Type="ServerEntity.Author" Role="Author" Multiplicity="1" />
@@ -500,21 +478,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="NovelHistory">
-          <End Type="ServerEntity.History" Role="History" Multiplicity="*" />
-          <End Type="ServerEntity.Novel" Role="Novel" Multiplicity="*" />
-        </Association>
         <Association Name="ReadingListNovels">
           <End Type="ServerEntity.ReadingList" Role="ReadingList" Multiplicity="*" />
           <End Type="ServerEntity.Novel" Role="Novel" Multiplicity="*" />
-        </Association>
-        <Association Name="UserHistory">
-          <End Type="ServerEntity.User" Role="User" Multiplicity="1" />
-          <End Type="ServerEntity.History" Role="History" Multiplicity="1" />
-        </Association>
-        <Association Name="UserReadingList">
-          <End Type="ServerEntity.ReadingList" Role="ReadingList" Multiplicity="1" />
-          <End Type="ServerEntity.User" Role="User" Multiplicity="1" />
         </Association>
         <Association Name="ChapterWebURL">
           <End Type="ServerEntity.Chapter" Role="Chapter" Multiplicity="1" />
@@ -546,22 +512,78 @@
           <Member Name="Completed" />
           <Member Name="Dropped" />
         </EnumType>
-        <Association Name="ChapterHistory">
-          <End Type="ServerEntity.Chapter" Role="Chapter" Multiplicity="*" />
+        <Association Name="UserReadingList">
+          <End Type="ServerEntity.User" Role="User" Multiplicity="1" />
+          <End Type="ServerEntity.ReadingList" Role="ReadingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReadingList">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserHistory">
+          <End Type="ServerEntity.User" Role="User" Multiplicity="1" />
           <End Type="ServerEntity.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NovelHistory">
+          <End Type="ServerEntity.Novel" Role="Novel" Multiplicity="1" />
+          <End Type="ServerEntity.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="NovelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChapterHistory">
+          <End Type="ServerEntity.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="ServerEntity.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NovelReadingList">
+          <End Type="ServerEntity.Novel" Role="Novel" Multiplicity="1" />
+          <End Type="ServerEntity.ReadingList" Role="ReadingList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Novel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReadingList">
+              <PropertyRef Name="NovelId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ServerDatabaseStoreContainer" CdmEntityContainer="ServerEntityContainer">
+  <EntityContainerMapping StorageEntityContainer="ServerEntityStoreContainer" CdmEntityContainer="ServerEntityContext">
     <EntitySetMapping Name="Novels">
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.Novel)">
         <MappingFragment StoreEntitySet="Novels">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="NovelName" ColumnName="NovelName" />
           <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+          <ScalarProperty Name="NovelName" ColumnName="NovelName" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -582,9 +604,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.Chapter)">
         <MappingFragment StoreEntitySet="Chapters">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
           <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
           <ScalarProperty Name="ChapterIndex" ColumnName="ChapterIndex" />
-          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -592,9 +614,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.Source)">
         <MappingFragment StoreEntitySet="Sources">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
           <ScalarProperty Name="SourceName" ColumnName="SourceName" />
           <ScalarProperty Name="SourcePriority" ColumnName="SourcePriority" />
-          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -602,9 +624,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.WebURL)">
         <MappingFragment StoreEntitySet="WebURLs">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Url" ColumnName="Url" />
-          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
           <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -620,6 +642,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.History)">
         <MappingFragment StoreEntitySet="Histories">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
           <ScalarProperty Name="ReadTime" ColumnName="ReadTime" />
           <ScalarProperty Name="Hidden" ColumnName="Hidden" />
         </MappingFragment>
@@ -629,48 +654,18 @@
       <EntityTypeMapping TypeName="IsTypeOf(ServerEntity.ReadingList)">
         <MappingFragment StoreEntitySet="ReadingLists">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="NovelId" ColumnName="NovelId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="NovelHistory" TypeName="ServerEntity.NovelHistory" StoreEntitySet="NovelHistory">
-      <EndProperty Name="History">
-        <ScalarProperty Name="Id" ColumnName="Histories_Id" />
-      </EndProperty>
-      <EndProperty Name="Novel">
-        <ScalarProperty Name="Id" ColumnName="Novels_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ReadingListNovels" TypeName="ServerEntity.ReadingListNovels" StoreEntitySet="ReadingListNovels">
       <EndProperty Name="ReadingList">
-        <ScalarProperty Name="Id" ColumnName="ReadingLists_Id" />
+        <ScalarProperty Name="Id" ColumnName="ReadingListNovels_Novel_Id" />
       </EndProperty>
       <EndProperty Name="Novel">
-        <ScalarProperty Name="Id" ColumnName="Novels_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="UserHistory" TypeName="ServerEntity.UserHistory" StoreEntitySet="Users">
-      <EndProperty Name="History">
-        <ScalarProperty Name="Id" ColumnName="History_Id" />
-      </EndProperty>
-      <EndProperty Name="User">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="UserReadingList" TypeName="ServerEntity.UserReadingList" StoreEntitySet="ReadingLists">
-      <EndProperty Name="User">
-        <ScalarProperty Name="Id" ColumnName="User_Id" />
-      </EndProperty>
-      <EndProperty Name="ReadingList">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="ChapterHistory" TypeName="ServerEntity.ChapterHistory" StoreEntitySet="ChapterHistory">
-      <EndProperty Name="Chapter">
-        <ScalarProperty Name="Id" ColumnName="Chapters_Id" />
-      </EndProperty>
-      <EndProperty Name="History">
-        <ScalarProperty Name="Id" ColumnName="Histories_Id" />
+        <ScalarProperty Name="Id" ColumnName="ReadingListNovels_ReadingList_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
